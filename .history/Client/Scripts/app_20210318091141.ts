@@ -276,13 +276,11 @@ namespace core
            loadLink("contact-list"); // refresh the page
          });
 
-      
+         $("#addButton").on("click", function() 
+         {
+          loadLink("edit");
+         });
       }
-
-      $("#addButton").on("click", function() 
-      {
-       loadLink("edit");
-      });
     }
 
     function displayEdit(): void
@@ -292,7 +290,7 @@ namespace core
       let contact = new core.Contact();
 
       // check to ensure that the key is not empty
-      if(key != undefined && key != "")
+      if(key != "")
       {
         // get contact info from localStorage
         contact.deserialize(localStorage.getItem(key));
@@ -305,7 +303,7 @@ namespace core
       else
       {
         // modify the page so that it shows "Add Contact" in the header 
-        $("main>div>h1").text("Add Contact");
+        $("main>h1").text("Add Contact");
         // modify edit button so that it shows "Add" as well as the appropriate icon
         $("#editButton").html(`<i class="fas fa-plus-circle fa-lg"></i> Add`);
       }

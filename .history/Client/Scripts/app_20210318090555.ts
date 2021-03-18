@@ -69,7 +69,7 @@ namespace core
     function loadHeader(pageName:string):void
     {
       // inject the Header
-      $.get("./components/header.html", function(data)
+      $.get("./Views/components/header.html", function(data)
       {
         $("header").html(data); // load the navigation bar
         
@@ -90,7 +90,7 @@ namespace core
     function loadContent(pageName:string, callback:Function):void
     {
       // inject content
-      $.get(`./content/${pageName}.html`, function(data)
+      $.get(`./Views/content/${pageName}.html`, function(data)
       {
         $("main").html(data);
 
@@ -107,7 +107,7 @@ namespace core
     function loadFooter():void
     {
       // inject the Footer
-      $.get("./components/footer.html", function(data)
+      $.get("./Views/components/footer.html", function(data)
       {
         $("footer").html(data);
       });
@@ -221,10 +221,10 @@ namespace core
               localStorage.setItem(key, contact.serialize());
             }
           }
-          loadLink("contact"); // reload contact page
+         
         });
 
-        
+        loadLink("contact"); // reload contact page
     }
 
     function displayContactList() :void
@@ -276,13 +276,11 @@ namespace core
            loadLink("contact-list"); // refresh the page
          });
 
-      
+         $("#addButton").on("click", function() 
+         {
+          loadLink("edit");
+         });
       }
-
-      $("#addButton").on("click", function() 
-      {
-       loadLink("edit");
-      });
     }
 
     function displayEdit(): void
@@ -292,7 +290,7 @@ namespace core
       let contact = new core.Contact();
 
       // check to ensure that the key is not empty
-      if(key != undefined && key != "")
+      if(key != "")
       {
         // get contact info from localStorage
         contact.deserialize(localStorage.getItem(key));
@@ -305,7 +303,7 @@ namespace core
       else
       {
         // modify the page so that it shows "Add Contact" in the header 
-        $("main>div>h1").text("Add Contact");
+        $("main>h1").text("Add Contact");
         // modify edit button so that it shows "Add" as well as the appropriate icon
         $("#editButton").html(`<i class="fas fa-plus-circle fa-lg"></i> Add`);
       }
