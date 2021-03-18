@@ -8,7 +8,7 @@ import { ServerResponse } from "node:http";
 const app = express()
 
 
-const PORT = process.env.PORT || '3000';
+const PORT = process.env.PORT;
 const HOST:string = "localhost";
 
 //static files
