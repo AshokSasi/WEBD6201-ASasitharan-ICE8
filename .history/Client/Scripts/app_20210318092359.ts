@@ -334,6 +334,8 @@ namespace core
 
           }
 
+          
+
           // return to the contact list
           loadLink("contact-list");
           
